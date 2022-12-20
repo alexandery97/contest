@@ -1,29 +1,29 @@
-## 7이 예외. Expected result == -1 인데... 2가 나옴.
+## input이 4997 아니면 4999면, expected result가 1001이 나와야되는데, for loop 이나 while loop을 사용하지 않아서, 뒤로 더 안돌아간다고............
 import java.util.*;
 
 class Main {
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         Scanner n= new Scanner(System.in);
         int Kg = n.nextInt();
         int result = 0;
-        
+
         if(Kg / 5 >= 3) {
             result += Kg / 5;
             result += (Kg % 5) / 3;
         }
-        else if(Kg / 5 < 3){
-           if(Kg % 3 == 0) {
-               result += Kg/3;
-           }
-           else {
-               result += Kg / 3;
-           }
+        else if(Kg / 5 < 3 && Kg/5 != 0){
+            if(Kg % 3 == 0)
+                result += Kg/3;
+            else {
+                if((Kg - 5) % 3 != 0)
+                    result = -1;
+                else
+                    result += Kg / 3;
+            }
         }
         else {
             result = -1;
         }
-        if(Kg == 7)
-            result = -1;
         System.out.println(result);
     }
 }
