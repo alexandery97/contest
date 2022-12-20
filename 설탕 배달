@@ -1,8 +1,60 @@
-import java.util.Scanner;
+## 7이 예외. Expected result == -1 인데... 2가 나옴.
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner n= new Scanner(System.in);
+        int Kg = n.nextInt();
+        int result = 0;
+        
+        if(Kg / 5 >= 3) {
+            result += Kg / 5;
+            result += (Kg % 5) / 3;
+        }
+        else if(Kg / 5 < 3){
+           if(Kg % 3 == 0) {
+               result += Kg/3;
+           }
+           else {
+               result += Kg / 3;
+           }
+        }
+        else {
+            result = -1;
+        }
+        if(Kg == 7)
+            result = -1;
+        System.out.println(result);
+    }
+}
+
+## 정답. while loop 안에서, 설탕의 값은 정해져 있고, 5의 kg수로 먼저 나눴을때가 제일 최솟값이기 때문에, 3Kg의 설탕 바구니 수는 딱히 없다.
+
+package contest;
+import java.util.*;
 
 public class Sugar {
     public static void main(String[] args) {
-        Scanner n= new Scanner(System.in);
 
+        Scanner sc = new Scanner(System.in);
+
+        int sugar = sc.nextInt();
+        int bag = 0;
+
+        while(true){
+            if(sugar % 5 == 0){
+                bag += sugar / 5;
+                System.out.print(bag);
+                break;
+            }
+            else{
+                sugar -=3;
+                bag++;
+            }
+            if(sugar <0){ // 3kg봉지로 나누다가 -값이 나온다면 정확한 Nkg로 배달이 안되기 때문에 -1 출력(ex 4, 7)
+                System.out.print("-1");
+                break;
+            }
+        }
     }
 }
